@@ -17,6 +17,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     MyServiceConn conn;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         tv_progress = (TextView) findViewById(R.id.tv_progress);
         tv_total = (TextView) findViewById(R.id.tv_total);
+
+
 
         //创建意图对象
         intent = new Intent(this, MusicService.class);
