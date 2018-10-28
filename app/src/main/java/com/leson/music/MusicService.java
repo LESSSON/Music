@@ -12,8 +12,11 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -37,7 +40,9 @@ public class MusicService extends Service{
 
         //创建音乐播放器对象
         player = new MediaPlayer();
+
     }
+
 
     //销毁播放音乐服务
     @Override
@@ -55,11 +60,14 @@ public class MusicService extends Service{
 
     }
 
+
+
+
         //播放音乐
-        public void play(){
+        public void play(final List mp3list, final int position){
 
             try {
-                String path= Environment.getExternalStorageDirectory().getAbsolutePath()+"/mp3/";
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath().replace("0","") + "mp3/";
                 if(player == null){
                     player = new MediaPlayer();
                 }
@@ -68,7 +76,7 @@ public class MusicService extends Service{
                 player.reset();
 
                 //加载多媒体文件
-                player.setDataSource(path+"FlowerDance.mp3");
+                player.setDataSource(path+ mp3list.get(position));
 
                 //准备播放音乐
                 player.prepare();
@@ -78,10 +86,29 @@ public class MusicService extends Service{
 
                 //添加计时器
                 addTimer();
+
+                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        if(position == mp3list.size() - 1){
+                            MusicService.this.play(mp3list,0);
+                        }else{
+                            MusicService.this.play(mp3list,position+1);
+                        }
+
+                    }
+                });
+
+
+
+                //
+
+
             } catch (IOException e){
                 e.printStackTrace();
             }
         }
+
 
         //暂停播放音乐
         public void pausePlay(){
@@ -95,13 +122,15 @@ public class MusicService extends Service{
             player.start();
         }
 
+
+
         //创建一个实现音乐接口的音乐控制类
         class MusicControl extends Binder implements MusicInterface {
 
             @Override
-            public void play(){
+            public void play(List mp3list,int position) {
 
-                MusicService.this.play();
+                MusicService.this.play(mp3list, position);
             }
 
             @Override
@@ -121,6 +150,8 @@ public class MusicService extends Service{
 
                 MusicService.this.seekTo(progress);
             }
+
+
         }
 
         //设置音乐的播放位置
@@ -129,42 +160,45 @@ public class MusicService extends Service{
             player.seekTo(progress);
         }
 
+
+
         //添加计时器用于设置音乐播放器中的播放进度
-        public void addTimer(){
+    public void addTimer(){
 
-            //如果没有创建计时器对象
-            if(timer == null) {
+        //如果没有创建计时器对象
+         if(timer == null) {
 
-                //创建计时器对象
-                timer = new Timer();
+            //创建计时器对象
+            timer = new Timer();
 
-                timer.schedule(new TimerTask(){
+            timer.schedule(new TimerTask(){
 
                     //执行计时任务
                     @Override
                     public void run(){
 
-                        //获得歌曲总时长
-                        int duration = player.getDuration();
+                  //获得歌曲总时长
+                  int duration = player.getDuration();
 
-                        //获取歌曲的当前播放进度
-                        int currentPosition = player.getCurrentPosition();
+                  //获取歌曲的当前播放进度
+                  int currentPosition = player.getCurrentPosition();
 
-                        //创建消息对象
-                        Message msg = MainActivity.handler.obtainMessage();
+                  //创建消息对象
+                  Message msg = MainActivity.handler.obtainMessage();
 
-                        //将音乐的播放进度封装至消息对象中
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("duration", duration);
-                        bundle.putInt("currentPosition", currentPosition);
-                        msg.setData(bundle);
+                  //将音乐的播放进度封装至消息对象中
+                  Bundle bundle = new Bundle();
+                  bundle.putInt("duration", duration);
+                  bundle.putInt("currentPosition", currentPosition);
+                  msg.setData(bundle);
 
-                        //将消息发送到主线程的消息队列
-                        MainActivity.handler.sendMessage(msg);
+                  //将消息发送到主线程的消息队列
+                  MainActivity.handler.sendMessage(msg);
                     }
-                },
-                //开始计时任务后的5毫秒，第一次执行run方法，以后每500毫秒执行一次
-                5,500);
+
+                    },
+                    //开始计时任务后的5毫秒，第一次执行run方法，以后每500毫秒执行一次
+                    5,500);
             }
         }
-    }
+        }

@@ -6,16 +6,24 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +31,18 @@ public class MainActivity extends AppCompatActivity {
     MyServiceConn conn;
     Intent intent;
     MusicInterface mi;
+    int number = 0;
+
+
+
+
+    //音乐播放器列表
+    private String music_path = Environment.getExternalStorageDirectory().getAbsolutePath().replace("0","") + "mp3/";//音乐文件的路径
+//    private String path1 = Environment.getExternalStorageDirectory().getAbsolutePath().replace("0","") + "/mp3";//音乐文件的路径
+
+    private List<String>mp3list = new ArrayList<String>();//歌曲列表
+    private ListView lv = null;
+
 
     //用于设置音乐播放器的播放进度
     private static SeekBar sb;
@@ -30,15 +50,34 @@ public class MainActivity extends AppCompatActivity {
     private static TextView tv_progress;
     private static TextView tv_total;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        lv = (ListView) findViewById(R.id.mp3list);
+        loadMp3();//调用加载音乐文件函数
+
+        //数据适配器用于把list的数据显示在ListView控件中
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_items, R.id.mp3Name, mp3list);
+        //设置数据适配器
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                number = position;
+                mi.play(mp3list,number);
+            }
+        });
+
+
+
+
+
         tv_progress = (TextView) findViewById(R.id.tv_progress);
         tv_total = (TextView) findViewById(R.id.tv_total);
-
-
 
         //创建意图对象
         intent = new Intent(this, MusicService.class);
@@ -62,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-
             }
 
             //滑动条刚开始滑动，此方法被调用
@@ -84,6 +122,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void loadMp3() {
+        File file = new File(music_path);//实例化文件
+        Log.i("ll", "path" + music_path);
+        File[] fileNames = file.listFiles();//返回指定目录下所有的文件名
+        for (File name : fileNames) {
+            //需要对文件名进行过滤
+            Log.i("hxx", ".." + name.getName());
+            mp3list.add(name.getName());
+        }
+    }
+
+
 
     public void requestPerm(View view) {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
@@ -113,6 +164,10 @@ public class MainActivity extends AppCompatActivity {
 
             //歌曲的当前进度（毫秒）
             int currentPostition = bundle.getInt("currentPosition");
+
+            if(duration == currentPostition){
+
+            }
 
             //刷新滑块的进度
             sb.setMax(duration);
@@ -171,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             tv_progress.setText(strMinute + ":" + strSecond);
+
         }
     };
 
@@ -178,8 +234,10 @@ public class MainActivity extends AppCompatActivity {
     public void play(View view) {
 
         //播放音乐
-        mi.play();
+        mi.play(mp3list,0);
     }
+
+
 
     //暂停播放音乐按钮相应函数
     public void pausePlay(View view) {
@@ -223,35 +281,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+
+
 }
 
-//    ContentResolver contentResolver=getContentResolver();
-//
-//    Cursor c = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,null,null,null,null);
-//
-//    if (c!=null){
-//        int i = 0;
-//        while(c.moveToNext()) {
-//            Map<String,Object> map = new HashMap<String, Object>();//存放在map中显示在listview
-//
-//            //歌曲名
-//            name[i] = c.getString(c.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
-//
-//            //歌曲id
-//            id[i] = c.getString(c.getColumnIndex(MediaStore.Audio.Media._ID));
-//
-//            //作者
-//            artical[i] = c.getString(c.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-//
-//            //路径
-//            url[i] = c.getString(c.getColumnIndex(MediaStore.Audio.Media.DATA));
-//            map.put("SongName",name[i]);
-//            map.put("id",id[i]);
-//            map.put("Artical",artical[i]);
-//            map.put("url",url[i]);
-//            list.add(map);
-//            i++;
-//        }
-//    }
-//
-//}
