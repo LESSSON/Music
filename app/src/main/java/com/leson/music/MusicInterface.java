@@ -16,5 +16,10 @@ public interface MusicInterface {
 
     //修改音乐播放位置
     void seekTo(int progress);
+
+    //播放上一首
+    void forward(List mp3list);
+    //播放下一首
+    void next(List mp3list);
     
 }

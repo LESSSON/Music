@@ -1,10 +1,12 @@
 package com.leson.music;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -17,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -33,28 +36,39 @@ public class MainActivity extends AppCompatActivity {
     MusicInterface mi;
     int number = 0;
 
-
-
-
-    //音乐播放器列表
+    //音乐播放器列表路径及权限获取
     private String music_path = Environment.getExternalStorageDirectory().getAbsolutePath().replace("0","") + "mp3/";//音乐文件的路径
-//    private String path1 = Environment.getExternalStorageDirectory().getAbsolutePath().replace("0","") + "/mp3";//音乐文件的路径
+    private static int REQUEST_PERMISSION_CODE = 2;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STOPAGE"
+    };
 
     private List<String>mp3list = new ArrayList<String>();//歌曲列表
-    private ListView lv = null;
+    private ListView lv = null;//listview控件
 
 
     //用于设置音乐播放器的播放进度
     private static SeekBar sb;
-
     private static TextView tv_progress;
     private static TextView tv_total;
+    //控制按钮
+    private Button t1,t2,t3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //启动时查看SD卡权限状态
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
+            if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE )!= PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(MainActivity.this,PERMISSIONS_STORAGE,REQUEST_PERMISSION_CODE);
+            }
+        }
+
 
         lv = (ListView) findViewById(R.id.mp3list);
         loadMp3();//调用加载音乐文件函数
@@ -69,11 +83,47 @@ public class MainActivity extends AppCompatActivity {
 
                 number = position;
                 mi.play(mp3list,number);
+                t1.setText("PAUSE");
             }
         });
 
+        //按钮响应处理
+        t1 = (Button) findViewById(R.id.touch1);
+        t2 = (Button) findViewById(R.id.touch2);
+        t3 = (Button) findViewById(R.id.touch3);
 
 
+        t1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(t1.getText() == "PLAY"){
+                    t1.setText("PAUSE");
+                    mi.continuePlay();
+                }else{
+                    if(t1.getText() == "PAUSE"){
+                        t1.setText("PLAY");
+                        mi.pausePlay();
+                    }
+                }
+
+            }
+        });
+
+        t2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t1.setText("PAUSE");
+                mi.forward(mp3list);
+            }
+        });
+
+        t3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t1.setText("PAUSE");
+                mi.next(mp3list);
+            }
+        });
 
 
         tv_progress = (TextView) findViewById(R.id.tv_progress);
@@ -123,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //扫面SD卡歌曲放入list中
     public void loadMp3() {
         File file = new File(music_path);//实例化文件
         Log.i("ll", "path" + music_path);
@@ -132,20 +183,6 @@ public class MainActivity extends AppCompatActivity {
             Log.i("hxx", ".." + name.getName());
             mp3list.add(name.getName());
         }
-    }
-
-
-
-    public void requestPerm(View view) {
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 
@@ -230,29 +267,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    //播放音乐按钮响应函数
-    public void play(View view) {
-
-        //播放音乐
-        mi.play(mp3list,0);
-    }
-
-
-
-    //暂停播放音乐按钮相应函数
-    public void pausePlay(View view) {
-
-        //暂停播放音乐
-        mi.pausePlay();
-    }
-
-    //继续播放音乐按钮相应函数
-    public void continuePlay(View view) {
-
-        //继续播放音乐
-        mi.continuePlay();
-    }
-
     //退出音乐播放器按钮响应函数
     public void exit(View view) {
 
@@ -281,9 +295,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
-
 
 }
 

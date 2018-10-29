@@ -15,37 +15,32 @@
 
 
         <Button
+            android:id="@+id/touch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="play"
-            android:onClick="play" />
+            android:text="PLAY" />
 
         <Button
+            android:id="@+id/touch2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="pause"
-            android:onClick="pausePlay" />
+            android:text="FORWARD" />
 
         <Button
+            android:id="@+id/touch3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CT"
-            android:onClick="continuePlay" />
+            android:text="NEXT" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="stop"
+            android:text="STOP"
             android:onClick="exit" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RP"
-            android:onClick="requestPerm" />
+
 
     </LinearLayout>
 

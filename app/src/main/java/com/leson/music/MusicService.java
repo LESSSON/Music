@@ -24,6 +24,7 @@ public class MusicService extends Service{
 
     private MediaPlayer player;
     private Timer timer;
+    private int po;
 
     //绑定服务时，调用此方法
     @Nullable
@@ -66,6 +67,8 @@ public class MusicService extends Service{
         //播放音乐
         public void play(final List mp3list, final int position){
 
+        po = position;
+
             try {
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath().replace("0","") + "mp3/";
                 if(player == null){
@@ -93,7 +96,8 @@ public class MusicService extends Service{
                         if(position == mp3list.size() - 1){
                             MusicService.this.play(mp3list,0);
                         }else{
-                            MusicService.this.play(mp3list,position+1);
+                            po++;
+                            MusicService.this.play(mp3list,po);
                         }
 
                     }
@@ -149,6 +153,27 @@ public class MusicService extends Service{
             public void seekTo(int progress) {
 
                 MusicService.this.seekTo(progress);
+            }
+
+            @Override
+            public void next(List mp3list){
+                if(po == mp3list.size() - 1){
+                    MusicService.this.play(mp3list,0);
+                }else{
+                    po++;
+                    MusicService.this.play(mp3list,po);
+                }
+
+            }
+
+            @Override
+            public void forward(List mp3list){
+                if(po == 0){
+                    MusicService.this.play(mp3list,mp3list.size()-1);
+                }else {
+                    po--;
+                    MusicService.this.play(mp3list,po);
+                }
             }
 
 
