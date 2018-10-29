@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private List<String>mp3list = new ArrayList<String>();//歌曲列表
-    private ListView lv = null;//listview控件
+    private static ListView lv = null;//listview控件
 
 
     //用于设置音乐播放器的播放进度
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 adapter1.setSelectedItem(position);
-//                adapter1.notifyDataSetInvalidated();
+                adapter1.notifyDataSetInvalidated();
                 number = position;
                 mi.play(mp3list,number);
                 t1.setText("PAUSE");
@@ -292,9 +293,14 @@ public class MainActivity extends AppCompatActivity {
             //歌曲的当前进度（毫秒）
             int currentPostition = bundle.getInt("currentPosition");
 
-            if(duration == currentPostition){
+            //当前歌曲播放位置
+            int position = bundle.getInt("position");
 
-            }
+
+            MyAdapter adapter2 = null;
+            adapter2 =(MyAdapter) lv.getAdapter();
+            adapter2.setSelectedItem(position);
+            lv.setAdapter(adapter2);
 
 
             //刷新滑块的进度

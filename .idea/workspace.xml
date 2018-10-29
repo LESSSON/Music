@@ -20,8 +20,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/leson/music/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/leson/music/MainActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_items.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_items.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicService.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,25 +46,21 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/leson/music/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="838">
-              <caret line="111" column="18" lean-forward="true" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
+            <state relative-caret-position="95">
+              <caret line="301" column="47" lean-forward="true" selection-start-line="301" selection-start-column="47" selection-end-line="301" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#ViewHolder#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#2526#2527#0" expanded="true" />
-                <element signature="e#2582#2583#0" expanded="true" />
-                <element signature="e#4816#5220#0" expanded="true" />
-                <element signature="e#5219#5220#0" expanded="true" />
-                <element signature="class#6807:7431" expanded="false" />
+                <element signature="e#2568#2569#0" expanded="true" />
+                <element signature="e#2624#2625#0" expanded="true" />
+                <element signature="class#6847:7471" expanded="false" />
                 <element signature="method#loadMp3#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#7866#9694#0" expanded="true" />
-                <element signature="e#9693#9694#0" expanded="true" />
                 <element signature="method#exit#0;class#MainActivity#0" expanded="false" />
                 <element signature="class#MyServiceConn#0;class#MainActivity#0" expanded="false" />
-                <marker date="1540802551376" expanded="false" signature="1177:1526" ph="..." />
-                <marker date="1540802551376" expanded="false" signature="3986:4345" ph="..." />
-                <marker date="1540802551376" expanded="true" signature="7466:7811" ph="..." />
-                <marker date="1540802551376" expanded="true" signature="7830:9695" ph="..." />
+                <marker date="1540804580246" expanded="false" signature="1212:1561" ph="..." />
+                <marker date="1540804580246" expanded="false" signature="4028:4387" ph="..." />
+                <marker date="1540804580246" expanded="true" signature="7506:7851" ph="..." />
+                <marker date="1540804580246" expanded="true" signature="7870:9928" ph="..." />
               </folding>
             </state>
           </provider>
@@ -74,19 +69,24 @@
       <file leaf-file-name="MusicService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="198" column="1" lean-forward="false" selection-start-line="198" selection-start-column="1" selection-end-line="198" selection-end-column="1" />
+            <state relative-caret-position="243">
+              <caret line="217" column="47" lean-forward="false" selection-start-line="217" selection-start-column="47" selection-end-line="217" selection-end-column="47" />
               <folding>
-                <element signature="e#1818#2270#0" expanded="true" />
-                <element signature="e#2269#2270#0" expanded="true" />
-                <element signature="e#4156#4942#0" expanded="true" />
-                <element signature="e#4941#4942#0" expanded="true" />
+                <element signature="e#4156#4990#0" expanded="true" />
+                <element signature="e#4989#4990#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>setSele</find>
+      <find>setSelection</find>
+      <find>edItem</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -2108,15 +2108,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicInterface.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_items.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/leson/music/MainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="154" />
+    <option name="x" value="56" />
     <option name="y" value="23" />
     <option name="width" value="1215" />
     <option name="height" value="837" />
@@ -2261,7 +2261,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2280,24 +2283,10 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="music" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Music" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="Music" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2527,7 +2516,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="154" y="23" width="1215" height="837" extended-state="0" />
+    <frame x="56" y="23" width="1215" height="837" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2536,9 +2525,8 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5029838" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.4970162" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2549,9 +2537,9 @@
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2559,6 +2547,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2574,25 +2563,53 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/leson/music/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#ViewHolder#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#2568#2569#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="class#6847:7471" expanded="false" />
+            <element signature="method#loadMp3#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#exit#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#MyServiceConn#0;class#MainActivity#0" expanded="false" />
+            <marker date="1540804580246" expanded="false" signature="1212:1561" ph="..." />
+            <marker date="1540804580246" expanded="false" signature="4028:4387" ph="..." />
+            <marker date="1540804580246" expanded="true" signature="7506:7851" ph="..." />
+            <marker date="1540804580246" expanded="true" signature="7870:9928" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2745">
+          <caret line="198" column="1" lean-forward="false" selection-start-line="198" selection-start-column="1" selection-end-line="198" selection-end-column="1" />
+          <folding>
+            <element signature="e#4156#4990#0" expanded="true" />
+            <element signature="e#4989#4990#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/leson/music/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2025">
           <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#ViewHolder#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2526#2527#0" expanded="true" />
-            <element signature="e#2582#2583#0" expanded="true" />
-            <element signature="e#4816#5220#0" expanded="true" />
-            <element signature="e#5219#5220#0" expanded="true" />
-            <element signature="class#6807:7431" expanded="false" />
+            <element signature="e#2568#2569#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="class#6847:7471" expanded="false" />
             <element signature="method#loadMp3#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7866#9694#0" expanded="true" />
-            <element signature="e#9693#9694#0" expanded="true" />
             <element signature="method#exit#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MyServiceConn#0;class#MainActivity#0" expanded="false" />
-            <marker date="1540802551376" expanded="false" signature="1177:1526" ph="..." />
-            <marker date="1540802551376" expanded="false" signature="3986:4345" ph="..." />
-            <marker date="1540802551376" expanded="true" signature="7466:7811" ph="..." />
-            <marker date="1540802551376" expanded="true" signature="7830:9695" ph="..." />
+            <marker date="1540804580246" expanded="false" signature="1212:1561" ph="..." />
+            <marker date="1540804580246" expanded="false" signature="4028:4387" ph="..." />
+            <marker date="1540804580246" expanded="true" signature="7506:7851" ph="..." />
+            <marker date="1540804580246" expanded="true" signature="7870:9928" ph="..." />
           </folding>
         </state>
       </provider>
@@ -2621,10 +2638,8 @@
         <state relative-caret-position="2415">
           <caret line="176" column="13" lean-forward="false" selection-start-line="176" selection-start-column="13" selection-end-line="176" selection-end-column="13" />
           <folding>
-            <element signature="e#1818#2270#0" expanded="true" />
-            <element signature="e#2269#2270#0" expanded="true" />
-            <element signature="e#4156#4942#0" expanded="true" />
-            <element signature="e#4941#4942#0" expanded="true" />
+            <element signature="e#4156#4990#0" expanded="true" />
+            <element signature="e#4989#4990#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2677,38 +2692,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/leson/music/MusicService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="198" column="1" lean-forward="false" selection-start-line="198" selection-start-column="1" selection-end-line="198" selection-end-column="1" />
+        <state relative-caret-position="243">
+          <caret line="217" column="47" lean-forward="false" selection-start-line="217" selection-start-column="47" selection-end-line="217" selection-end-column="47" />
           <folding>
-            <element signature="e#1818#2270#0" expanded="true" />
-            <element signature="e#2269#2270#0" expanded="true" />
-            <element signature="e#4156#4942#0" expanded="true" />
-            <element signature="e#4941#4942#0" expanded="true" />
+            <element signature="e#4156#4990#0" expanded="true" />
+            <element signature="e#4989#4990#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/leson/music/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="838">
-          <caret line="111" column="18" lean-forward="true" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
+        <state relative-caret-position="95">
+          <caret line="301" column="47" lean-forward="true" selection-start-line="301" selection-start-column="47" selection-end-line="301" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#ViewHolder#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2526#2527#0" expanded="true" />
-            <element signature="e#2582#2583#0" expanded="true" />
-            <element signature="e#4816#5220#0" expanded="true" />
-            <element signature="e#5219#5220#0" expanded="true" />
-            <element signature="class#6807:7431" expanded="false" />
+            <element signature="e#2568#2569#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="class#6847:7471" expanded="false" />
             <element signature="method#loadMp3#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7866#9694#0" expanded="true" />
-            <element signature="e#9693#9694#0" expanded="true" />
             <element signature="method#exit#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MyServiceConn#0;class#MainActivity#0" expanded="false" />
-            <marker date="1540802551376" expanded="false" signature="1177:1526" ph="..." />
-            <marker date="1540802551376" expanded="false" signature="3986:4345" ph="..." />
-            <marker date="1540802551376" expanded="true" signature="7466:7811" ph="..." />
-            <marker date="1540802551376" expanded="true" signature="7830:9695" ph="..." />
+            <marker date="1540804580246" expanded="false" signature="1212:1561" ph="..." />
+            <marker date="1540804580246" expanded="false" signature="4028:4387" ph="..." />
+            <marker date="1540804580246" expanded="true" signature="7506:7851" ph="..." />
+            <marker date="1540804580246" expanded="true" signature="7870:9928" ph="..." />
           </folding>
         </state>
       </provider>

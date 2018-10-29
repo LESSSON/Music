@@ -215,6 +215,7 @@ public class MusicService extends Service{
                   Bundle bundle = new Bundle();
                   bundle.putInt("duration", duration);
                   bundle.putInt("currentPosition", currentPosition);
+                  bundle.putInt("position",po);
                   msg.setData(bundle);
 
                   //将消息发送到主线程的消息队列
