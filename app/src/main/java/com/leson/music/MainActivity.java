@@ -1,28 +1,34 @@
 package com.leson.music;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.io.File;
 import java.util.ArrayList;
@@ -55,11 +61,78 @@ public class MainActivity extends AppCompatActivity {
     //控制按钮
     private Button t1,t2,t3;
 
+    private static MyAdapter adapter1;
+    class ViewHolder{
+        public TextView song;
+    }
+    public class MyAdapter extends BaseAdapter{
+
+        private LayoutInflater mInflater = null;
+        private int selectedItem = -1;
+        private MyAdapter(Context context)
+        {
+            //根据context上下文加载布局，这里的是this
+            this.mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public int getCount() {
+            //在此适配器中所代表的数据集中的条目数
+            return mp3list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            //获取数据集中与指定索引对应的数据项
+            return position;
+        }
+
+        public void setSelectedItem(int selectedItem){
+            this.selectedItem = selectedItem;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            //获取在列表中与指定索引对应的行id
+            return position;
+        }
+
+        //获取一个在数据集中指定索引的视图来显示数据
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder = null;
+            //如果缓存converView为空，则创建View
+            if(convertView == null){
+                holder = new ViewHolder();
+                //根据自定义的Item布局加载布局
+                convertView = mInflater.inflate(R.layout.list_items,null);
+                holder.song = (TextView) convertView.findViewById(R.id.mp3Name);
+                //将设置好的布局保存到缓存中，并将其设置在Tag里，以便以后方便取出Tag
+                convertView.setTag(holder);
+            }else{
+                holder = (ViewHolder)convertView.getTag();
+            }
+            holder.song.setText((String)mp3list.get(position));
+            if(position == selectedItem){
+                convertView.setBackgroundColor(Color.RED);
+                convertView.setSelected(true);
+
+            }else {
+                convertView.setBackgroundColor(Color.WHITE);
+                convertView.setSelected(false);
+            }
+            return convertView;
+        }
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //启动时查看SD卡权限状态
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
@@ -70,24 +143,39 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
         lv = (ListView) findViewById(R.id.mp3list);
         loadMp3();//调用加载音乐文件函数
 
         //数据适配器用于把list的数据显示在ListView控件中
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_items, R.id.mp3Name, mp3list);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_items, R.id.mp3Name, mp3list);
+        adapter1 = new MyAdapter(this);
+        lv.setAdapter(adapter1);
+
         //设置数据适配器
-        lv.setAdapter(adapter);
+
+//        lv.setAdapter(adapter);
+
+        lv.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                adapter1.setSelectedItem(position);
+//                adapter1.notifyDataSetInvalidated();
                 number = position;
                 mi.play(mp3list,number);
                 t1.setText("PAUSE");
+
+
+
             }
         });
 
-        //按钮响应处理
+
+        //按钮响应
         t1 = (Button) findViewById(R.id.touch1);
         t2 = (Button) findViewById(R.id.touch2);
         t3 = (Button) findViewById(R.id.touch3);
@@ -173,6 +261,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     //扫面SD卡歌曲放入list中
     public void loadMp3() {
         File file = new File(music_path);//实例化文件
@@ -205,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
             if(duration == currentPostition){
 
             }
+
 
             //刷新滑块的进度
             sb.setMax(duration);
